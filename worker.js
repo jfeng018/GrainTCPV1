@@ -2271,7 +2271,7 @@ function genNodes(host, uuid, proxyIP, customIPs, psName, pipSet) {
   if (!customIPs || customIPs.length === 0) {
       const path = proxyIP ? `/proxyip=${proxyIP}` : "/";
       const nodeName = `${psName || 'Worker'} - Default`;
-      const defaultHost = formatHostForUrl(proxyIP || host);
+      const defaultHost = formatHostForUrl(parseAddressPort(proxyIP || host)[0]);
       const vLink = `${P_V}://${uuid}@${defaultHost}:443${commonUrlPart}&path=${encodeURIComponent(path)}#${encodeURIComponent(nodeName)}`;
       return vLink;
   }
